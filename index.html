@@ -1,53 +1,126 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>My Basic Site</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: system-ui, Arial, sans-serif;
-      max-width: 800px;
-      margin: 60px auto;
-      padding: 0 16px;
-      line-height: 1.6;
-    }
-    header { margin-bottom: 40px; }
-    .box {
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-    footer {
-      margin-top: 40px;
-      font-size: 14px;
-      color: #666;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Hello</h1>
-    <p>This is my first free website.</p>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Famous Quotes</title>
+    <meta name="description" content="A simple list of famous quotes with links to the authors on Wikipedia." />
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        max-width: 900px;
+        margin: 56px auto;
+        padding: 0 16px;
+        line-height: 1.55;
+      }
+      header { margin-bottom: 28px; }
+      h1 { margin: 0 0 6px; font-size: 34px; }
+      p { margin: 0; opacity: 0.85; }
+      ul { list-style: none; padding: 0; margin: 28px 0; }
+      li {
+        border: 1px solid rgba(127,127,127,0.25);
+        border-radius: 14px;
+        padding: 16px 16px 14px;
+        margin: 12px 0;
+      }
+      blockquote { margin: 0 0 10px; font-size: 18px; }
+      .byline { font-size: 14px; opacity: 0.85; }
+      a { text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      footer { margin-top: 34px; font-size: 13px; opacity: 0.75; }
+      .tag { display: inline-block; border: 1px solid rgba(127,127,127,0.35); border-radius: 999px; padding: 2px 10px; font-size: 12px; margin-left: 8px; opacity: 0.9; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Famous Quotes</h1>
+      <p>Short, well-known quotes with author links to Wikipedia.</p>
+    </header>
 
-  <div class="box">
-    <h2>About</h2>
-    <p>Edit this text later.</p>
-  </div>
+    <ul id="quotes"></ul>
 
-  <div class="box">
-    <h2>Next</h2>
-    <p>Add links or projects here.</p>
-  </div>
+    <footer>
+      <span>Last updated: <span id="today"></span></span>
+      <span class="tag">Static HTML</span>
+    </footer>
 
-  <footer>
-    © <span id="year"></span>
-  </footer>
+    <script>
+      // Edit this list to add/remove quotes.
+      const QUOTES = [
+        {
+          quote: "To be, or not to be, that is the question.",
+          author: "William Shakespeare",
+          wiki: "https://en.wikipedia.org/wiki/William_Shakespeare"
+        },
+        {
+          quote: "Cogito, ergo sum. (I think, therefore I am.)",
+          author: "René Descartes",
+          wiki: "https://en.wikipedia.org/wiki/Ren%C3%A9_Descartes"
+        },
+        {
+          quote: "The only thing we have to fear is fear itself.",
+          author: "Franklin D. Roosevelt",
+          wiki: "https://en.wikipedia.org/wiki/Franklin_D._Roosevelt"
+        },
+        {
+          quote: "That's one small step for a man, one giant leap for mankind.",
+          author: "Neil Armstrong",
+          wiki: "https://en.wikipedia.org/wiki/Neil_Armstrong"
+        },
+        {
+          quote: "Ask not what your country can do for you — ask what you can do for your country.",
+          author: "John F. Kennedy",
+          wiki: "https://en.wikipedia.org/wiki/John_F._Kennedy"
+        },
+        {
+          quote: "Injustice anywhere is a threat to justice everywhere.",
+          author: "Martin Luther King Jr.",
+          wiki: "https://en.wikipedia.org/wiki/Martin_Luther_King_Jr."
+        },
+        {
+          quote: "Veni, vidi, vici. (I came, I saw, I conquered.)",
+          author: "Julius Caesar",
+          wiki: "https://en.wikipedia.org/wiki/Julius_Caesar"
+        },
+        {
+          quote: "The unexamined life is not worth living.",
+          author: "Socrates",
+          wiki: "https://en.wikipedia.org/wiki/Socrates"
+        },
+        {
+          quote: "Knowledge is power.",
+          author: "Francis Bacon",
+          wiki: "https://en.wikipedia.org/wiki/Francis_Bacon"
+        },
+        {
+          quote: "Stay hungry, stay foolish.",
+          author: "Steve Jobs",
+          wiki: "https://en.wikipedia.org/wiki/Steve_Jobs"
+        }
+      ];
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
+      const ul = document.getElementById("quotes");
+      for (const item of QUOTES) {
+        const li = document.createElement("li");
+
+        const bq = document.createElement("blockquote");
+        bq.textContent = "“" + item.quote + "”";
+
+        const by = document.createElement("div");
+        by.className = "byline";
+        by.innerHTML = `— <a href="${item.wiki}" target="_blank" rel="noopener noreferrer">${item.author}</a>`;
+
+        li.appendChild(bq);
+        li.appendChild(by);
+        ul.appendChild(li);
+      }
+
+      document.getElementById("today").textContent = new Date().toLocaleDateString(undefined, {
+        year: "numeric",
+        month: "short",
+        day: "numeric"
+      });
+    </script>
+  </body>
 </html>
