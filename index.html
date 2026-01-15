@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>My Basic Site</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+    }
+    header { margin-bottom: 40px; }
+    .box {
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Hello</h1>
+    <p>This is my first free website.</p>
+  </header>
+
+  <div class="box">
+    <h2>About</h2>
+    <p>Edit this text later.</p>
+  </div>
+
+  <div class="box">
+    <h2>Next</h2>
+    <p>Add links or projects here.</p>
+  </div>
+
+  <footer>
+    © <span id="year"></span>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
